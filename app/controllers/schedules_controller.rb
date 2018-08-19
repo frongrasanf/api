@@ -47,7 +47,11 @@ class SchedulesController < ApplicationController
 
   # DELETE /schedules/1
   def destroy
+    start_at = @schedule.start_at
+    @schedules = Schedule.where(start_at: start_at.all_month)
     @schedule.destroy
+    render json: @schedules
+
   end
 
   private
