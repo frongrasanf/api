@@ -3,7 +3,13 @@ class SchedulesController < ApplicationController
 
   # GET /schedules
   def index
-    @schedules = Schedule.all
+    if params[:date]
+      date = params[:date]
+      @schedules = Schedule.where(start_at: date.in_time_zone.all_month)
+    else
+      date = Time.zone.now.strftime("%Y-%m-%d")
+      @schedules = Schedule.where(start_at: date.in_time_zone.all_month)
+    end
 
     render json: @schedules
   end
@@ -15,10 +21,16 @@ class SchedulesController < ApplicationController
 
   # POST /schedules
   def create
-    @schedule = Schedule.new(params[:title])
+    @schedule = Schedule.new
+    @schedule.title = params[:title]
+    time_array = params[:start_at].split("/")
+    p time_array
+    @schedule.start_at = DateTime.new(time_array[0].to_i, time_array[1].to_i, time_array[2].to_i, 00, 00, 00)
 
     if @schedule.save
-      render json: @schedule, status: :created, location: @schedule
+      @schedules = Schedule.where(start_at: @schedule.start_at.in_time_zone.all_month)
+      p @schedules
+      render json: @schedules, status: :created
     else
       render json: @schedule.errors, status: :unprocessable_entity
     end
