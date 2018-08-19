@@ -5,10 +5,10 @@ class SchedulesController < ApplicationController
   def index
     if params[:date]
       date = params[:date]
-      @schedules = Schedule.where(start_at: date.in_time_zone.all_month)
+      @schedules = Schedule.where(start_at: date.in_time_zone.all_month).order("start_at ASC")
     else
       date = Time.zone.now.strftime("%Y-%m-%d")
-      @schedules = Schedule.where(start_at: date.in_time_zone.all_month)
+      @schedules = Schedule.where(start_at: date.in_time_zone.all_month).order("start_at ASC")
     end
 
     render json: @schedules
@@ -28,7 +28,7 @@ class SchedulesController < ApplicationController
     @schedule.start_at = DateTime.new(time_array[0].to_i, time_array[1].to_i, time_array[2].to_i, 00, 00, 00)
 
     if @schedule.save
-      @schedules = Schedule.where(start_at: @schedule.start_at.in_time_zone.all_month)
+      @schedules = Schedule.where(start_at: @schedule.start_at.in_time_zone.all_month).order("start_at ASC")
       p @schedules
       render json: @schedules, status: :created
     else
