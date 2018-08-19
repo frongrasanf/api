@@ -23,7 +23,7 @@ class SchedulesController < ApplicationController
   def create
     @schedule = Schedule.new
     @schedule.title = params[:title]
-    time_array = params[:start_at].split("/")
+    time_array = params[:start_at].split("-")
     p time_array
     @schedule.start_at = DateTime.new(time_array[0].to_i, time_array[1].to_i, time_array[2].to_i, 00, 00, 00)
 
