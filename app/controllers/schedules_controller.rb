@@ -15,7 +15,7 @@ class SchedulesController < ApplicationController
 
   # POST /schedules
   def create
-    @schedule = Schedule.new(schedule_params)
+    @schedule = Schedule.new(params[:title])
 
     if @schedule.save
       render json: @schedule, status: :created, location: @schedule
@@ -46,6 +46,6 @@ class SchedulesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def schedule_params
-      params.require(:schedule).permit(:index)
+      params.require(:schedule).permit(:title)
     end
 end
