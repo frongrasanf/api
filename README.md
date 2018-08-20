@@ -1,24 +1,9 @@
-# README
+## API server for Simple Calendar (https://github.com/frongrasanf/simple_calendar)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Discription
 
-Things you may want to cover:
+* Ruby 2.5.1
 
-* Ruby version
+* Ruby on Rails 5.2.1 API mode
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Deployed to HEROKU
