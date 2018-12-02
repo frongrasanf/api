@@ -1,4 +1,4 @@
-## API server for Simple Calendar (https://github.com/frongrasanf/simple_calendar)
+## API server for Simple Calendar
 
 ## Discription
 
