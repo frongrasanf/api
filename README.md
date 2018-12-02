@@ -1,6 +1,6 @@
 ## API server for Simple Calendar
 
-## Discription
+## Description
 
 * Ruby 2.5.1
 
